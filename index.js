@@ -1,12 +1,15 @@
 let AWS = require("aws-sdk");
 
+//AWS access details
 AWS.config.update({
-  accessKeyId: "AKIASROVAQKH3RNTU7RG",
-  secretAccessKey: "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",
+
   region: "us-east-2",
 });
 
 //create an input var for the detectLabels API
+//Enter the bucket name in S3 bucket. Image name in name
+//Enter the number of labels that should be returned in output
+//enter the minimum
 let params = {
   Image: {
     S3Object: {
@@ -18,14 +21,16 @@ let params = {
 //   MinConfidence: 80,
 };
 
+
+//call the aws rek class
 const rekognition = new AWS.Rekognition();
 
-// rekognition.detectLabels(params, function (err, data) {
-//   if (err) console.log(err, err.stack);
-//   else console.log(data);
-// });
-
-rekognition.detectText(params, function (err, data) {
+rekognition.detectLabels(params, function (err, data) {
   if (err) console.log(err, err.stack);
   else console.log(data);
 });
+
+// rekognition.detectText(params, function (err, data) {
+//   if (err) console.log(err, err.stack);
+//   else console.log(data);
+// });
